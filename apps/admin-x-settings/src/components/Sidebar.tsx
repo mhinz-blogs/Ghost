@@ -9,6 +9,7 @@ import {searchKeywords as emailSearchKeywords} from './settings/email/EmailSetti
 import {searchKeywords as generalSearchKeywords} from './settings/general/GeneralSettings';
 import {searchKeywords as growthSearchKeywords} from './settings/growth/GrowthSettings';
 import {searchKeywords as membershipSearchKeywords} from './settings/membership/MembershipSettings';
+import {searchKeywords as keycloakSearchKeywords} from './settings/keycloak/KeycloakSettings';
 import {searchKeywords as siteSearchKeywords} from './settings/site/SiteSettings';
 import {useGlobalData} from './providers/GlobalDataProvider';
 import {useRouting} from '@tryghost/admin-x-framework/routing';
@@ -69,6 +70,7 @@ const Sidebar: React.FC = () => {
         if (!checkVisible(Object.values(generalSearchKeywords).flat()) &&
             !checkVisible(Object.values(siteSearchKeywords).flat()) &&
             !checkVisible(Object.values(membershipSearchKeywords).flat()) &&
+            !checkVisible(Object.values(keycloakSearchKeywords).flat()) &&
             !checkVisible(Object.values(growthSearchKeywords).flat()) &&
             !checkVisible(Object.values(emailSearchKeywords).flat()) &&
             !checkVisible(Object.values(advancedSearchKeywords).flat())) {
@@ -181,6 +183,10 @@ const Sidebar: React.FC = () => {
                     <NavItem icon='key' keywords={membershipSearchKeywords.access} navid='members' title="Access" onClick={handleSectionClick} />
                     <NavItem icon='bills' keywords={membershipSearchKeywords.tiers} navid='tiers' title="Tiers" onClick={handleSectionClick} />
                     <NavItem icon='baseline-chart' keywords={membershipSearchKeywords.analytics} navid='analytics' title="Analytics" onClick={handleSectionClick} />
+                </SettingNavSection>
+
+                <SettingNavSection isVisible={checkVisible(Object.values(keycloakSearchKeywords).flat())} title="Keycloak">
+                    <NavItem icon='key' keywords={keycloakSearchKeywords.settings} navid='keycloak' title="Keycloak settings" onClick={handleSectionClick} />
                 </SettingNavSection>
 
                 <SettingNavSection isVisible={checkVisible(Object.values(growthSearchKeywords).flat())} title="Growth">

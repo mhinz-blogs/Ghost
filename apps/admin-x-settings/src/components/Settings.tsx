@@ -5,6 +5,7 @@ import EmailSettings from './settings/email/EmailSettings';
 import GeneralSettings from './settings/general/GeneralSettings';
 import GrowthSettings from './settings/growth/GrowthSettings';
 import MembershipSettings from './settings/membership/MembershipSettings';
+import KeycloakSettings from './settings/keycloak/KeycloakSettings';
 import SiteSettings from './settings/site/SiteSettings';
 
 const Settings: React.FC = () => {
@@ -14,6 +15,7 @@ const Settings: React.FC = () => {
                 <GeneralSettings />
                 <SiteSettings />
                 <MembershipSettings />
+                <KeycloakSettings />
                 <GrowthSettings />
                 <EmailSettings />
                 <AdvancedSettings />
