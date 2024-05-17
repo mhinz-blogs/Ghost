@@ -35,7 +35,6 @@ export const modalPaths: {[key: string]: ModalName} = {
     'offers/edit': 'OffersContainerModal',
     'offers/edit/:id': 'OffersContainerModal',
     'offers/new': 'OffersContainerModal',
-    'keycloak/edit': 'KeycloakDetailsModal',
     about: 'AboutModal'
 };
 

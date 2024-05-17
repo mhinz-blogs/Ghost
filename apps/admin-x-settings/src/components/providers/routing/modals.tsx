@@ -29,7 +29,6 @@ import TierDetailModal from '../../settings/membership/tiers/TierDetailModal';
 import UnsplashModal from '../../settings/advanced/integrations/UnsplashModal';
 import UserDetailModal from '../../settings/general/UserDetailModal';
 import ZapierModal from '../../settings/advanced/integrations/ZapierModal';
-import KeycloakDetailsModal from '../../settings/keycloak/KeycloakDeatailsModal';
 
 const modals = {
     AddIntegrationModal,
@@ -54,7 +53,6 @@ const modals = {
     ZapierModal,
     AnnouncementBarModal,
     EmbedSignupFormModal,
-    KeycloakDetailsModal,
     OffersContainerModal,
     // OffersModal,
     // AddOfferModal,
