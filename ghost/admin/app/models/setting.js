@@ -86,6 +86,16 @@ export default Model.extend(ValidationEngine, {
     commentsEnabled: attr(), // "off", "free", "paid"
 
     /**
+     * Keycloak settings
+     */
+    /**
+     * !!CEAVEAT!! enabeling keycloak will overwrite all other membership settings.
+     */
+    keycloakEnabled: attr('boolean', {defaultValue: true}),
+    keycloakTokenUrl: attr('string',{defaultValue: 'Ibbe Dibbe Dabb '}),
+    keycloakRolePrefix: attr('string'),
+
+    /**
      * Editor settings
      */
     editorDefaultEmailRecipients: attr('string'),

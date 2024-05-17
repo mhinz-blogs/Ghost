@@ -73,6 +73,11 @@ export default [
     setting('members', 'members_yearly_price_id', null),
     setting('members', 'members_track_sources', true),
 
+    //Keycloak
+    setting('keycloak', 'keycloak_enabled', false),
+    setting('keycloak', 'keycloak_token_url', null),
+    setting('keycloak', 'keycloak_role_prefix', null),
+
     // PORTAL
     setting('portal', 'portal_name', true),
     setting('portal', 'portal_button', true),
