@@ -30,7 +30,7 @@ export const useBrowseSettings = createQuery<SettingsResponseType>({
     dataType,
     path: '/settings/',
     defaultSearchParams: {
-        group: 'site,theme,private,members,portal,newsletter,email,amp,labs,slack,unsplash,views,firstpromoter,editor,comments,analytics,announcement,pintura,donations'
+        group: 'site,theme,private,members,keycloak,portal,newsletter,email,amp,labs,slack,unsplash,views,firstpromoter,editor,comments,analytics,announcement,pintura,donations'
     }
 });
 
@@ -63,7 +63,6 @@ export const useTestSlack = createMutation<unknown, null>({
 
 export function humanizeSettingKey(key: string) {
     const allCaps = ['API', 'CTA', 'RSS'];
-
     return key
         .replace(/^[a-z]/, char => char.toUpperCase())
         .replace(/_/g, ' ')
@@ -75,6 +74,7 @@ export function getSettingValues<ValueType = SettingValue>(settings: Setting[] |
 }
 
 export function getSettingValue<ValueType = SettingValue>(settings: Setting[] | null | undefined, key: string): ValueType | null {
+
     if (!settings) {
         return null;
     }
