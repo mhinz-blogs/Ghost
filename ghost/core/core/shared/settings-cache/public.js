@@ -31,7 +31,7 @@ module.exports = {
     allow_self_signup: 'allow_self_signup',
     members_invite_only: 'members_invite_only',
     keycloak_enabled: 'keycloak_enabled',
-    keycloak_token_url: 'keycloak_token_url',
+    keycloak_auth_url: 'keycloak_auth_url',
     keycloak_role_prefix: 'keycloak_role_prefix',
     paid_members_enabled: 'paid_members_enabled',
     firstpromoter_account: 'firstpromoter_account',

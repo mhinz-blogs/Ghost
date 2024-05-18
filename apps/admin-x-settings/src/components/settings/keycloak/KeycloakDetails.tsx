@@ -19,7 +19,7 @@ const KeycloakDetails: React.FC<{ keywords: string[] }> = ({keywords}) => {
         handleEditingChange
     } = useSettingGroup();
 
-    const [keycloakTokenUrl, keycloakRolePrefix] = getSettingValues<string>(localSettings, ['keycloak_token_url', 'keycloak_role_prefix']);
+    const [keycloakTokenUrl, keycloakRolePrefix] = getSettingValues<string>(localSettings, ['keycloak_auth_url', 'keycloak_role_prefix']);
     const [keycloakEnabled] = getSettingValues<boolean>(localSettings, ['keycloak_enabled']);
     const [nameLength, setNameLength] = useState(0);
     const nameLengthColor = nameLength > 255 ? 'text-red' : 'text-green';
@@ -36,10 +36,10 @@ const KeycloakDetails: React.FC<{ keywords: string[] }> = ({keywords}) => {
                 disabled={!keycloakEnabled || !isEditing}
                 hint={<div className='flex justify-between'><strong><span className={`${nameLengthColor}`}>{nameLength}</span> / 255</strong></div>}
                 maxLength={255}
-                placeholder='Keycloak Token URL'
-                title='Keycloak Token URL'
+                placeholder='Keycloak Auth URL'
+                title='Keycloak Auth URL'
                 onChange={(e) => {
-                    updateSetting('keycloak_token_url', e?.target.value || null);
+                    updateSetting('keycloak_auth_url', e?.target.value || null);
                     setNameLength(e.target.value.length);
                 }}
             />

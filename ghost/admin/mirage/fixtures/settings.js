@@ -75,7 +75,7 @@ export default [
 
     //Keycloak
     setting('keycloak', 'keycloak_enabled', false),
-    setting('keycloak', 'keycloak_token_url', null),
+    setting('keycloak', 'keycloak_auth_url', null),
     setting('keycloak', 'keycloak_role_prefix', null),
 
     // PORTAL

@@ -33,7 +33,7 @@ const EDITABLE_SETTINGS = [
     'members_signup_access',
     'members_support_address',
     'keycloak_enabled',
-    'keycloak_token_url',
+    'keycloak_auth_url',
     'keycloak_role_prefix',
     'stripe_secret_key',
     'stripe_publishable_key',
