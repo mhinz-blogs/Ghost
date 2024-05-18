@@ -309,6 +309,20 @@
             "type": "boolean"
         }
     },
+    "keycloak": {
+        "keycloak_enabled": {
+            "defaultValue": false,
+            "type": "boolean"
+        },
+        "keycloak_auth_url": {
+            "defaultValue": null,
+            "type": "string"
+        },
+        "keycloak_role_prefix": {
+            "defaultValue": null,
+            "type": "string"
+        }
+    },
     "portal": {
         "portal_name": {
             "defaultValue": "true",
