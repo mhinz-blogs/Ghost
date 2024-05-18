@@ -19,7 +19,6 @@ const KeycloakDetails: React.FC<{ keywords: string[] }> = ({keywords}) => {
         handleEditingChange
     } = useSettingGroup();
 
-    //const {currentUser, settings, siteData, config} = useGlobalData();
     const [keycloakTokenUrl, keycloakRolePrefix] = getSettingValues<string>(localSettings, ['keycloak_token_url', 'keycloak_role_prefix']);
     const [keycloakEnabled] = getSettingValues<boolean>(localSettings, ['keycloak_enabled']);
     const [nameLength, setNameLength] = useState(0);
@@ -34,8 +33,7 @@ const KeycloakDetails: React.FC<{ keywords: string[] }> = ({keywords}) => {
 
             <TextField
                 value={keycloakTokenUrl}
-                disabled={!keycloakEnabled}
-
+                disabled={!keycloakEnabled || !isEditing}
                 hint={<div className='flex justify-between'><strong><span className={`${nameLengthColor}`}>{nameLength}</span> / 255</strong></div>}
                 maxLength={255}
                 placeholder='Keycloak Token URL'
@@ -47,7 +45,7 @@ const KeycloakDetails: React.FC<{ keywords: string[] }> = ({keywords}) => {
             />
             <TextField
                 value={keycloakRolePrefix}
-                disabled={!keycloakEnabled}
+                disabled={!keycloakEnabled || !isEditing}
                 hint={<div className='flex justify-between'>Prefix of the roles to be applied to the user in Ghost</div>}
                 maxLength={10}
                 placeholder='ghost_'
@@ -74,7 +72,7 @@ const KeycloakDetails: React.FC<{ keywords: string[] }> = ({keywords}) => {
             testId='keycloak'
             title='Keycloak settings'
         >
-            <Toggle label='Enable Keycloak' size='lg' labelClasses='text-lg'  direction='rtl' toggleBg='black'
+            <Toggle label='Enable Keycloak' size='lg' labelClasses='text-lg'  direction='rtl' toggleBg='green'
                 checked={keycloakEnabled}
                 disabled={!isEditing}
                 onChange={(e) => {
