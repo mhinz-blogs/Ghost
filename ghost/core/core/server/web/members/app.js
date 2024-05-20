@@ -56,6 +56,9 @@ module.exports = function setupMembersApp() {
     membersApp.get('/api/session', middleware.getIdentityToken);
     membersApp.delete('/api/session', bodyParser.json({limit: '5mb'}), middleware.deleteSession);
 
+    //init session by keycloak
+    membersApp.get('/api/session/keycloak', middleware.getIdentityByKeycloak);
+
     // NOTE: this is wrapped in a function to ensure we always go via the getter
     membersApp.post(
         '/api/send-magic-link',

@@ -11,6 +11,7 @@ const {
 } = require('./utils');
 const errors = require('@tryghost/errors');
 const tpl = require('@tryghost/tpl');
+const { reset } = require('nconf');
 
 const messages = {
     missingUuid: 'Missing uuid.',
@@ -61,6 +62,33 @@ const authMemberByUuid = async function authMemberByUuid(req, res, next) {
     } catch (err) {
         next(err);
     }
+};
+const getIdentityByKeycloak = async function getIdentityByKeycloak(req, res) {
+    console.info(req);
+    console.info(res);
+
+    /*
+    console.info(req);
+
+    try {
+
+        console.info('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! aber so was von!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        console.info(req);
+        const keycloak_token_url = 'http://keycloak/realms/schorschi/protocol/openid-connect/token';
+        const query = '?'
+        const session_state = req.query['session_state'];
+        const code = req.query['code'];
+        //{ session_state, aud } = JSON.parse(decodeURIComponent(escape(atob(accessToken.split(‌​'.') [1])))) 
+
+        //const token = await membersService.ssr.getIdentityTokenForMemberFromSession(req, res);
+        console.info(token);
+        //res.writeHead(200);
+        //res.end(token);
+    } catch (err) {
+        res.writeHead(204);
+        res.end();
+    }
+    */
 };
 
 const getIdentityToken = async function getIdentityToken(req, res) {
@@ -317,6 +345,7 @@ module.exports = {
     authMemberByUuid,
     createSessionFromMagicLink,
     getIdentityToken,
+    getIdentityByKeycloak,
     getMemberNewsletters,
     getMemberData,
     updateMemberData,
