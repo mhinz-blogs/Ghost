@@ -63,10 +63,36 @@ const authMemberByUuid = async function authMemberByUuid(req, res, next) {
         next(err);
     }
 };
-const getIdentityByKeycloak = async function getIdentityByKeycloak(req, res) {
-    console.info(req);
-    console.info(res);
+const getIdentityByKeycloak = async function getIdentityByKeycloak(req, res, next) {
 
+    const searchParams = new URLSearchParams("");
+    const member = await membersService.api.memberBREADService.read(req.query.email);
+    //Object.assign(req, {member});
+    //res.locals.member = req.member;
+    console.info(member);
+    //membersService.ssr.exchangeSSOTokenForSession(req,res);
+    const subscriptions = [];
+    Object.keys(req.query).forEach((param) => {
+        // don't copy the "token" or "r" params
+        if (param !== 'token' && param !== 'r') {
+            searchParams.set(param, req.query[param]);
+        }
+    });
+    searchParams.set('id_token', member.id);
+    //const baseUrl = urlUtils.getSiteUrl();
+    //console.info(baseUrl.href);
+    //console.info(req.query.r);
+    //return res.redirect(req.query.r);
+    searchParams.set('action', 'account');
+    searchParams.set('success', 'true');
+    console.info(searchParams.toString());
+    membersService.ssr._setSessionCookie(req, res, member.transient_id);
+    res.redirect(`${urlUtils.getSubdir()}/?${searchParams.toString()}`);
+    //return res.redirect(baseUrl.href)
+    //res.write(req);
+    //res.end();
+    //res.writeHead(200);
+    //next();
     /*
     console.info(req);
 

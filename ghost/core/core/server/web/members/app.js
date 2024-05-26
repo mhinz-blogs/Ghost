@@ -90,6 +90,7 @@ module.exports = function setupMembersApp() {
         labs.enabledMiddleware('audienceFeedback'),
         bodyParser.json({limit: '50mb'}),
         middleware.loadMemberSession,
+        middleware.getIdentityByKeycloak,
         middleware.authMemberByUuid,
         http(api.feedbackMembers.add)
     );
