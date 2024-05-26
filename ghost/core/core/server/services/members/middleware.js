@@ -65,12 +65,9 @@ const authMemberByUuid = async function authMemberByUuid(req, res, next) {
 };
 const getIdentityByKeycloak = async function getIdentityByKeycloak(req, res, next) {
 
+    console.info(req.query.email);
     const searchParams = new URLSearchParams("");
-    const member = await membersService.api.memberBREADService.read(req.query.email);
-    //Object.assign(req, {member});
-    //res.locals.member = req.member;
-    console.info(member);
-    //membersService.ssr.exchangeSSOTokenForSession(req,res);
+
     const subscriptions = [];
     Object.keys(req.query).forEach((param) => {
         // don't copy the "token" or "r" params
@@ -78,43 +75,19 @@ const getIdentityByKeycloak = async function getIdentityByKeycloak(req, res, nex
             searchParams.set(param, req.query[param]);
         }
     });
-    searchParams.set('id_token', member.id);
-    //const baseUrl = urlUtils.getSiteUrl();
-    //console.info(baseUrl.href);
-    //console.info(req.query.r);
-    //return res.redirect(req.query.r);
-    searchParams.set('action', 'account');
-    searchParams.set('success', 'true');
-    console.info(searchParams.toString());
-    membersService.ssr._setSessionCookie(req, res, member.transient_id);
-    res.redirect(`${urlUtils.getSubdir()}/?${searchParams.toString()}`);
-    //return res.redirect(baseUrl.href)
-    //res.write(req);
-    //res.end();
-    //res.writeHead(200);
-    //next();
-    /*
-    console.info(req);
-
-    try {
-
-        console.info('!!!!!!!!!!!!!!!!!!!!!!!!!!!!! aber so was von!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        console.info(req);
-        const keycloak_token_url = 'http://keycloak/realms/schorschi/protocol/openid-connect/token';
-        const query = '?'
-        const session_state = req.query['session_state'];
-        const code = req.query['code'];
-        //{ session_state, aud } = JSON.parse(decodeURIComponent(escape(atob(accessToken.split(‌​'.') [1])))) 
-
-        //const token = await membersService.ssr.getIdentityTokenForMemberFromSession(req, res);
-        console.info(token);
-        //res.writeHead(200);
-        //res.end(token);
-    } catch (err) {
-        res.writeHead(204);
-        res.end();
+    const member = await membersService.api.getMemberIdentityData(req.query.email);
+    //const member = await membersService.api.memberBREADService.read(req.query.email);
+    console.info(member);
+    if(member){
+        membersService.ssr._setSessionCookie(req, res, member.transient_id);
+        res.redirect(`${urlUtils.getSubdir()}/?${searchParams.toString()}`);    
+    }else{
+        throw new errors.UnauthorizedError({
+            messsage: tpl(messages.missingUuid)
+        });
     }
-    */
+    
+
 };
 
 const getIdentityToken = async function getIdentityToken(req, res) {
